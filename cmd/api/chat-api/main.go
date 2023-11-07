@@ -48,22 +48,10 @@ func init() {
 
 func main() {
 
-	configFile, err := config.FindConfigPath()
+	configFile, ginPort, hide, showVersion, err := config.FlagParse()
 	if err != nil {
 		panic(err)
 	}
-
-	var ginPort int
-	flag.IntVar(&ginPort, "port", 10008, "get ginServerPort from cmd")
-
-	var hide bool
-	flag.BoolVar(&hide, "hide", true, "hide the ComponentCheck result")
-
-	// Version flag
-	var showVersion bool
-	flag.BoolVar(&showVersion, "version", false, "show version and exit")
-
-	flag.Parse()
 
 	// Check if the version flag was set
 	if showVersion {
