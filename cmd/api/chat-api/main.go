@@ -47,11 +47,12 @@ func init() {
 }
 
 func main() {
-	var configFile string
-	//flag.StringVar(&configFile, "config_folder_path", "../../../../../config/config.yaml", "Config full path:")
-	flag.StringVar(&configFile, "config_folder_path", "config/config.yaml", "Config full path")
 
-	// defaultPorts := config.Config.ChatApi.GinPort
+	configFile, err := config.FindConfigPath()
+	if err != nil {
+		panic(err)
+	}
+
 	var ginPort int
 	flag.IntVar(&ginPort, "port", 10008, "get ginServerPort from cmd")
 
@@ -78,7 +79,7 @@ func main() {
 
 	flag.Parse()
 
-	err := component.ComponentCheck(configFile, hide)
+	err = component.ComponentCheck(configFile, hide)
 	if err != nil {
 		return
 	}

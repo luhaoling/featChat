@@ -47,9 +47,6 @@ func main() {
 		panic(err)
 	}
 
-	//var configFile string
-	//flag.StringVar(&configFile, "config_folder_path", "../../config/config.yaml", "Config full path")
-
 	var ginPort int
 
 	flag.IntVar(&ginPort, "port", 10009, "get ginServerPort from cmd")
